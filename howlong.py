@@ -67,10 +67,9 @@ def getTimeDiff():
 
 if __name__ == '__main__':
     setup(segments)
-    print("Press ^(ctrl)+C to exit, Press \"a\" for time")
-    print("=====================================================")
     try:
         timeDiff = getTimeDiff()
+        print(timeDiff)
         while True:
             for i in range(4):
                 n = timeDiff[i]
