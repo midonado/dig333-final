@@ -65,9 +65,12 @@ if __name__ == '__main__':
     setup()
     print("Press ^(ctrl)+C to exit, Press \"a\" for time")
     print("=====================================================")
-    while True:
-        if(input("") == "a"):  # TODO: update to read GPIO input
-            currTime = getTime()
-            print(timeDiff(currTime))
-        else:
-            break
+    try:
+        while True:
+            if(input("") == "a"):  # TODO: update to read GPIO input
+                currTime = getTime()
+                print(timeDiff(currTime))
+            else:
+                break
+    finally:
+        GPIO.cleanup()
