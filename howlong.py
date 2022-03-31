@@ -63,7 +63,7 @@ def timeDiff(time):  # return time difference between time and 5PM, returns as a
 # TODO: process string into GPIO output
 
 if __name__ == '__main__':
-    setup()
+    setup(segments)
     print("Press ^(ctrl)+C to exit, Press \"a\" for time")
     print("=====================================================")
     try:
