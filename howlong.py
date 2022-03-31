@@ -21,7 +21,11 @@ num = {' ': (1, 1, 1, 1, 1, 1, 1),
        '6': (0, 1, 0, 0, 0, 0, 0),
        '7': (0, 0, 0, 1, 1, 1, 1),
        '8': (0, 0, 0, 0, 0, 0, 0),
-       '9': (0, 0, 0, 0, 1, 0, 0)}
+       '9': (0, 0, 0, 0, 1, 0, 0),
+       'u': (0, 0, 1, 1, 1, 0, 0),
+       'n': (0, 0, 1, 0, 1, 0, 1),
+       't': (0, 0, 0, 1, 1, 1, 1),
+       'i': (1, 1, 0, 1, 1, 1, 1)}
 
 # TODO: cleanup comments/documentation
 
@@ -69,6 +73,7 @@ if __name__ == '__main__':
     setup(segments)
     try:
         timeDiff = getTimeDiff()
+        timeDiff += "unti15"
         print(timeDiff)
         while True:
             for i in range(4):
