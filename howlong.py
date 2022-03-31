@@ -76,7 +76,7 @@ if __name__ == '__main__':
                 n = timeDiff[i]
                 for loop in range(0, 7):
                     GPIO.output(segments[loop], num[n][loop])
-                sleep(0.2)
+                time.sleep(0.2)
             break
     finally:
         GPIO.cleanup()
