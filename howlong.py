@@ -22,9 +22,9 @@ num = {' ': (1, 1, 1, 1, 1, 1, 1),
        '7': (0, 0, 0, 1, 1, 1, 1),
        '8': (0, 0, 0, 0, 0, 0, 0),
        '9': (0, 0, 0, 0, 1, 0, 0),
-       'u': (0, 0, 1, 1, 1, 0, 0),
-       'n': (0, 0, 1, 0, 1, 0, 1),
-       't': (0, 0, 0, 1, 1, 1, 1),
+       'u': (1, 1, 0, 0, 0, 1, 1),
+       'n': (1, 1, 0, 1, 0, 1, 0),
+       't': (1, 1, 1, 0, 0, 0, 0),
        'i': (1, 1, 0, 1, 1, 1, 1)}
 
 # TODO: cleanup comments/documentation
@@ -63,11 +63,13 @@ def timeDiff(time):  # return time difference between time and 5PM, returns as a
 
     return stringTime(delta_hours, delta_minutes)
 
+
 def getTimeDiff():
     time = getTime()
     return timeDiff(time)
 
 # TODO: process string into GPIO output
+
 
 if __name__ == '__main__':
     setup(segments)
@@ -79,7 +81,7 @@ if __name__ == '__main__':
             for ch in timeDiff:
                 for loop in range(0, 7):
                     GPIO.output(segments[loop], num[ch][loop])
-                time.sleep(0.2)
+                time.sleep(0.3)
             break
     finally:
         GPIO.cleanup()
