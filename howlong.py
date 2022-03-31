@@ -68,9 +68,9 @@ if __name__ == '__main__':
     print("=====================================================")
     try:
         while True:
-            n = str(input("type your number"))
+            n = str(input("type your number: "))
 
-            if(input("") != "q"):  # TODO: update to read GPIO input     
+            if(n != "q"):  # TODO: update to read GPIO input     
                 for loop in range(0, 7):
                     GPIO.output(segments[loop], num[n][loop])
             else:
