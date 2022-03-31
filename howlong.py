@@ -10,6 +10,7 @@ FIVE_PM = datetime.timedelta(
     minutes=0
 )
 
+segments = []
 num = {' ': (0, 0, 0, 0, 0, 0, 0),
        '0': (1, 1, 1, 1, 1, 1, 0),
        '1': (0, 1, 1, 0, 0, 0, 0),
@@ -25,12 +26,12 @@ num = {' ': (0, 0, 0, 0, 0, 0, 0),
 # TODO: cleanup comments/documentation
 
 
-def setup():
-    segments = (17, 16, 11, 26, 22, 13, 24, 23)
+def setup(output):
     # GPIO ports for the 7seg pins
-    # 7seg_segment_pins (11,7,4,2,1,10,5,3) +  100R inline
+    segments = (17, 16, 11, 26, 22, 13, 24, 23)
 
     for segment in segments:
+        output.append(segment)
         GPIO.setup(segment, GPIO.OUT)
         GPIO.output(segment, 1)
 
@@ -62,14 +63,16 @@ def timeDiff(time):  # return time difference between time and 5PM, returns as a
 # TODO: process string into GPIO output
 
 if __name__ == '__main__':
-    setup()
+    # setup()
     print("Press ^(ctrl)+C to exit, Press \"a\" for time")
     print("=====================================================")
     try:
         while True:
-            if(input("") == "a"):  # TODO: update to read GPIO input
-                currTime = getTime()
-                print(timeDiff(currTime))
+            n = str(input("type your number"))
+
+            if(input("") != "q"):  # TODO: update to read GPIO input     
+                for loop in range(0, 7):
+                    GPIO.output(segments[loop], num[n][loop])
             else:
                 break
     finally:
