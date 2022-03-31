@@ -76,10 +76,9 @@ if __name__ == '__main__':
         timeDiff += "unti15"
         print(timeDiff)
         while True:
-            for i in range(4):
-                n = timeDiff[i]
+            for ch in timeDiff:
                 for loop in range(0, 7):
-                    GPIO.output(segments[loop], num[n][loop])
+                    GPIO.output(segments[loop], num[ch][loop])
                 time.sleep(0.2)
             break
     finally:
