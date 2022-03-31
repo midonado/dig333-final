@@ -59,6 +59,9 @@ def timeDiff(time):  # return time difference between time and 5PM, returns as a
 
     return stringTime(delta_hours, delta_minutes)
 
+def getTimeDiff():
+    time = getTime()
+    return timeDiff(time)
 
 # TODO: process string into GPIO output
 
@@ -67,13 +70,13 @@ if __name__ == '__main__':
     print("Press ^(ctrl)+C to exit, Press \"a\" for time")
     print("=====================================================")
     try:
+        timeDiff = getTimeDiff()
         while True:
-            n = str(input("type your number: "))
-
-            if(n != "q"):  # TODO: update to read GPIO input
+            for i in range(4):
+                n = timeDiff[i]
                 for loop in range(0, 7):
                     GPIO.output(segments[loop], num[n][loop])
-            else:
-                break
+                sleep(0.2)
+            break
     finally:
         GPIO.cleanup()
