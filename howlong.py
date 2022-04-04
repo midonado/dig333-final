@@ -10,7 +10,7 @@ FIVE_PM = datetime.timedelta(
     minutes=0
 )
 
-segments = []
+segments = (17, 16, 11, 26, 22, 13, 24, 23)
 num = {' ': (1, 1, 1, 1, 1, 1, 1),
        '0': (0, 0, 0, 0, 0, 0, 1),
        '1': (1, 0, 0, 1, 1, 1, 1),
@@ -29,13 +29,8 @@ num = {' ': (1, 1, 1, 1, 1, 1, 1),
 
 # TODO: cleanup comments/documentation
 
-
-def setup(output):
-    # GPIO ports for the 7seg pins
-    segments = (17, 16, 11, 26, 22, 13, 24, 23)
-
+def setup():
     for segment in segments:
-        output.append(segment)
         GPIO.setup(segment, GPIO.OUT)
         GPIO.output(segment, 1)
 
@@ -72,7 +67,7 @@ def getTimeDiff():
 
 
 if __name__ == '__main__':
-    setup(segments)
+    setup()
     try:
         timeDiff = getTimeDiff()
         timeDiff += "unti15"
