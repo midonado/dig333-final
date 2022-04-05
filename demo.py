@@ -16,6 +16,11 @@ num = {'0': (0, 0, 0, 0, 0, 0, 1),
        'A': (0, 0, 0, 1, 0, 0, 0),
        'P': (0, 0, 1, 1, 0, 0, 0)}
 
+def setup():
+    for segment in segments:
+        GPIO.setup(segment, GPIO.OUT)
+        GPIO.output(segment, 1)
+
 def getTime():
     currentTime = time.localtime()
 
@@ -36,6 +41,7 @@ def stringTime(hours, mins):
         str(mins).rjust(2, "0") + time
 
 if __name__ == '__main__':
+    setup()
     timeString = getTime()
 
     try:
