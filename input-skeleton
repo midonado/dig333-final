@@ -26,7 +26,8 @@ if __name__ == '__main__':
 
     try:
         while True:
-            inputString = input("Input a number for your display: ")
+            # read input from user
+            inputString = 0
 
             if(inputString == "q"): break
 

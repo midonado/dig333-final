@@ -12,33 +12,42 @@ num = {'0': (0, 0, 0, 0, 0, 0, 1),
        '6': (0, 1, 0, 0, 0, 0, 0),
        '7': (0, 0, 0, 1, 1, 1, 1),
        '8': (0, 0, 0, 0, 0, 0, 0),
-       '9': (0, 0, 0, 0, 1, 0, 0),
-       'A': (0, 0, 0, 1, 0, 0, 0),
-       'P': (0, 0, 1, 1, 0, 0, 0)}
+       '9': (0, 0, 0, 0, 1, 0, 0)}
+
+# OPTIONAL: A and P segment signals
+#    'A': (0, 0, 0, 1, 0, 0, 0)
+#    'P': (0, 0, 1, 1, 0, 0, 0)
+
 
 def setup():
     for segment in segments:
         GPIO.setup(segment, GPIO.OUT)
         GPIO.output(segment, 1)
 
+
 def getTime():
-    currentTime = time.localtime()
+    # get local time struct from time library
+    currentTime = 0
 
-    hour = currentTime.tm_hour
-    min = currentTime.tm_min
+    # isolate the hour and minutes from
+    hour = 0
+    mins = 0
 
-    return stringTime(hour, min)
+    # return formatted string of time
+    return
 
-def stringTime(hours, mins):  
-    # defines AM vs PM
-    time = "A"
-    if(hours > 12):
-        hours -= 12
-        time = "P"
-    
-    # returns time as continuous string
-    return str(hours).rjust(2, "0") + \
-        str(mins).rjust(2, "0") + time
+
+def stringTime(hours, mins):
+    # Use the rjust function to transform the hours and mins
+    hourStr = ""
+    minsStr = ""
+
+    # OPTIONAL: convert into 12-hour clock by adding 
+    # A or P for AM/PM (see 'A' and 'P' outputs above)
+
+    # return the hours and minutes as a single string 
+    # in the format HHMM
+    return
 
 if __name__ == '__main__':
     setup()
