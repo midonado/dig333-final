@@ -31,7 +31,7 @@ if __name__ == '__main__':
             if(inputString == "q"): break
 
             for ch in inputString:
-                if(ch >= 0 and ch <= 9):
+                if(ch >= "0" and ch <= "9"):
                     for loop in range(7):   
                         GPIO.output(segments[loop], num[ch][loop])
                     time.sleep(0.5)
