@@ -35,8 +35,8 @@ if __name__ == '__main__':
                     for loop in range(7):   
                         GPIO.output(segments[loop], num[ch][loop])
                     time.sleep(0.5)
-                    
+
             for loop in range(7):   
-                GPIO.output(segments[loop], num[ch][loop])
+                GPIO.output(segments[loop], 1)
     finally:
         GPIO.cleanup()
