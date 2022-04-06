@@ -87,12 +87,16 @@ if __name__ == '__main__':
     try:
         setup()
         timeDiff = getTimeDiff()
-        til5 = "ti15"   
+        til5 = "ti15"
+        flag = True
 
         GPIO.output(3, 0)
 
         for i in range(200):
-            if(i%4 == 0): GPIO.output(2, 1)
+            if(i%4 == 0): 
+                GPIO.output(2, flag)
+                flag = not flag
+
             for digit in range(4):
 
                 for loop in range(0, 7):
