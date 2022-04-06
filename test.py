@@ -78,13 +78,12 @@ def getTimeDiff():
 
 if __name__ == '__main__':
     # print(timeDiff)
-
     try:
         setup()
         timeDiff = getTimeDiff()
         til5 = "ti15"   
 
-        for i in range(3000):
+        for i in range(30000):
             for digit in range(4):
                 for loop in range(0, 7):
                     GPIO.output(segments[loop], not num[timeDiff[digit]][loop])
