@@ -122,9 +122,10 @@ if __name__ == '__main__':
     try:
         setup()
         while True:
-            n = input("Press 'q' to exit")
-            if(n == "q"): break
-            display()
+            n = input("Press 'q' to see time")
+            if(n == "q"):
+                display()
+            else: break
             time.sleep(4)
 
     finally:
