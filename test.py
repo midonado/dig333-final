@@ -52,6 +52,8 @@ def setup():
     GPIO.setup(3, GPIO.OUT)
     GPIO.output(3, 1)
 
+    GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
 
 def getTime():  # returns current time as datetime with hours + mins
     currentTime = time.localtime()
@@ -123,10 +125,9 @@ if __name__ == '__main__':
         setup()
         print("Press any key to exit.")
         while True:
-            n = input("Press 'a' to see how long until 5: ")
-            if(n == "a"):
+            input_state = GPIO.input(5)
+            if input_state == False:
                 display()
-            else: break
 
     finally:
         GPIO.cleanup()
