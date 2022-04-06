@@ -122,11 +122,11 @@ if __name__ == '__main__':
     try:
         setup()
         while True:
-            n = input("Press 'q' to see time")
-            if(n == "q"):
+            n = input("Press ' ' to see how long until 5: ")
+            if(n == " "):
                 display()
             else: break
-            time.sleep(4)
+            time.sleep(2)
 
     finally:
         GPIO.cleanup()
