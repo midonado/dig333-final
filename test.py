@@ -33,6 +33,7 @@ num = {' ': (1, 1, 1, 1, 1, 1, 1),
 
 # TODO: cleanup comments/documentation
 
+
 def setup():
     for segment in segments:
         GPIO.setup(segment, GPIO.OUT)
@@ -76,11 +77,10 @@ def getTimeDiff():
 
 if __name__ == '__main__':
     setup()
-    timeDiff = getTimeDiff()
-    # timeDiff += "ti15"
-    print(timeDiff)
     try:
         while True:
+            timeDiff = getTimeDiff()
+            print(timeDiff)
             for digit in range(4):
                 for loop in range(0, 7):
                     GPIO.output(segments[loop], not num[timeDiff[digit]][loop])
