@@ -84,16 +84,13 @@ if __name__ == '__main__':
         timeDiff = getTimeDiff()
         til5 = "ti15"   
 
-        while True:
+        for i in range(3000):
             for digit in range(4):
                 for loop in range(0, 7):
                     GPIO.output(segments[loop], not num[timeDiff[digit]][loop])
-                GPIO.output(digits[digit], 0)
+                GPIO.output(digits[digit%4], 0)
                 time.sleep(0.001)
-                GPIO.output(digits[digit], 1)
-
-            time.sleep(3)
-            break
+                GPIO.output(digits[digit%4], 1)
 
     finally:
         GPIO.cleanup()
