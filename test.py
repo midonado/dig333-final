@@ -43,6 +43,12 @@ def setup():
     for digit in digits:
         GPIO.setup(digit, GPIO.OUT)
         GPIO.output(digit, 1)
+    
+
+    GPIO.setup(2, GPIO.OUT)
+    GPIO.output(2, 0)
+    GPIO.setup(3, GPIO.OUT)
+    GPIO.output(3, 1)
 
 
 def getTime():  # returns current time as datetime with hours + mins
@@ -83,13 +89,19 @@ if __name__ == '__main__':
         timeDiff = getTimeDiff()
         til5 = "ti15"   
 
+        GPIO.output(3, 0)
+
         for i in range(200):
             for digit in range(4):
+                if(i%4 == 0): GPIO.output(2, 1)
+
                 for loop in range(0, 7):
                     GPIO.output(segments[loop], not num[timeDiff[digit]][loop])
                 GPIO.output(digits[digit%4], 0)
                 time.sleep(0.001)
                 GPIO.output(digits[digit%4], 1)
+
+        GPIO.output(3, 0)
 
         for i in range(200):
             for digit in range(4):
