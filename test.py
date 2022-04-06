@@ -93,7 +93,7 @@ if __name__ == '__main__':
         GPIO.output(3, 0)
 
         for i in range(200):
-            if(i%4 == 0): 
+            if(i%50 == 0): 
                 GPIO.output(2, flag)
                 flag = not flag
 
