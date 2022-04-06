@@ -123,11 +123,12 @@ if __name__ == '__main__':
     # print(timeDiff)
     try:
         setup()
-        print("Press any key to exit.")
+        print("Press 'q'' key to exit.")
         while True:
             input_state = GPIO.input(5)
             if input_state == False:
                 display()
+            if(input() == 'q'): break
 
     finally:
         GPIO.cleanup()
