@@ -121,8 +121,9 @@ if __name__ == '__main__':
     # print(timeDiff)
     try:
         setup()
+        print("Press any key to exit.")
         while True:
-            n = input("Press ' ' to see how long until 5: ")
+            n = input("Press 'a' to see how long until 5: ")
             if(n == " "):
                 display()
             else: break
