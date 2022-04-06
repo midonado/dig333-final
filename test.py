@@ -87,5 +87,6 @@ if __name__ == '__main__':
                 GPIO.output(digits[digit], 0)
                 time.sleep(0.001)
                 GPIO.output(digits[digit], 1)
+            time.sleep(1)
     finally:
         GPIO.cleanup()
