@@ -121,7 +121,11 @@ if __name__ == '__main__':
     # print(timeDiff)
     try:
         setup()
-        display()
+        while True:
+            n = input("Press 'q' to exit")
+            if(n == q): break
+            display()
+            time.sleep(4)
 
     finally:
         GPIO.cleanup()
