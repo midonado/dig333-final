@@ -1,5 +1,6 @@
 import datetime
 import time
+import sys
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
@@ -88,10 +89,10 @@ if __name__ == '__main__':
                 GPIO.output(digits[digit], 0)
                 time.sleep(0.001)
                 GPIO.output(digits[digit], 1)
-                
+
             time.sleep(5)
             break
 
     finally:
         GPIO.cleanup()
-        exit()
+        sys.exit(0)
