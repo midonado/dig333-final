@@ -123,7 +123,7 @@ if __name__ == '__main__':
         setup()
         while True:
             n = input("Press 'q' to exit")
-            if(n == q): break
+            if(n == "q"): break
             display()
             time.sleep(4)
 
