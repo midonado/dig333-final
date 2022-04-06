@@ -80,15 +80,16 @@ if __name__ == '__main__':
     try:
         timeDiff = getTimeDiff()
         print(timeDiff)
-
-        for digit in range(4):
-            for loop in range(0, 7):
-                GPIO.output(segments[loop], not num[timeDiff[digit]][loop])
-            GPIO.output(digits[digit], 0)
-            time.sleep(0.001)
-            GPIO.output(digits[digit], 1)
-
-        time.sleep(30000)
+        
+        while True:
+            for digit in range(4):
+                for loop in range(0, 7):
+                    GPIO.output(segments[loop], not num[timeDiff[digit]][loop])
+                GPIO.output(digits[digit], 0)
+                time.sleep(0.001)
+                GPIO.output(digits[digit], 1)
+            time.sleep(30000)
+            break
 
     finally:
         GPIO.cleanup()
