@@ -126,7 +126,6 @@ if __name__ == '__main__':
             if(n == " "):
                 display()
             else: break
-            time.sleep(2)
 
     finally:
         GPIO.cleanup()
