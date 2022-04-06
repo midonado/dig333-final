@@ -11,6 +11,7 @@ FIVE_PM = datetime.timedelta(
 )
 
 segments = (16, 17, 22, 26, 21, 13, 27)
+digits = (11, 9, 10, 25)
 num = {' ': (1, 1, 1, 1, 1, 1, 1),
        '0': (0, 0, 0, 0, 0, 0, 1),
        '1': (1, 0, 0, 1, 1, 1, 1),
@@ -35,7 +36,11 @@ num = {' ': (1, 1, 1, 1, 1, 1, 1),
 def setup():
     for segment in segments:
         GPIO.setup(segment, GPIO.OUT)
-        GPIO.output(segment, 1)
+        GPIO.output(segment, 0)
+
+    for digit in digits:
+        GPIO.setup(digit, GPIO.OUT)
+        GPIO.output(digit, 0)
 
 
 def getTime():  # returns current time as datetime with hours + mins
