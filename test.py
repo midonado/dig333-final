@@ -77,11 +77,13 @@ def getTimeDiff():
 
 
 if __name__ == '__main__':
-    setup()
-    timeDiff = getTimeDiff()
     # print(timeDiff)
 
     try:
+        setup()
+        timeDiff = getTimeDiff()
+        til5 = "ti15"   
+
         while True:
             for digit in range(4):
                 for loop in range(0, 7):
@@ -90,7 +92,7 @@ if __name__ == '__main__':
                 time.sleep(0.001)
                 GPIO.output(digits[digit], 1)
 
-            time.sleep(5)
+            time.sleep(3)
             break
 
     finally:
