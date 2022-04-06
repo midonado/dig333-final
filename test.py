@@ -81,12 +81,12 @@ if __name__ == '__main__':
         # timeDiff += "ti15"
         print(timeDiff)
         while True:
-            for ch in timeDiff:
+            for digit in range(4):
                 for loop in range(0, 7):
-                    GPIO.output(segments[loop], not num[ch][loop])
-                GPIO.output(digits[ch], 0)
+                    GPIO.output(segments[loop], not num[timeDiff[digit]][loop])
+                GPIO.output(digits[digit], 0)
                 time.sleep(0.001)
-                GPIO.output(digits[ch], 1)
+                GPIO.output(digits[digit], 1)
 
             if(input() == "q"): break
     finally:
