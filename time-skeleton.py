@@ -26,28 +26,32 @@ def setup():
 
 
 def getTime():
-    # get local time struct from time library
+    # Use time.localtime() to get local time 
+    # struct from time library
     currentTime = 0
 
-    # isolate the hour and minutes from
+    # Isolate the hour and minutes from currentTime
+    # (hint: they're saved as tm_hour and tm_min)
     hour = 0
     mins = 0
 
-    # return formatted string of time
-    return
+    # Return formatted string of time
+    return stringTime(hour, mins)
 
 
 def stringTime(hours, mins):
-    # Use the rjust function to transform the hours and mins
+    # Use the rjust function to write the hours and
+    # minutes as two characters filling in the blanks
+    # with '0's 
     hourStr = ""
     minsStr = ""
 
     # OPTIONAL: convert into 12-hour clock by adding 
     # A or P for AM/PM (see 'A' and 'P' outputs above)
 
-    # return the hours and minutes as a single string 
+    # Return the hours and minutes as a single string 
     # in the format HHMM
-    return
+    return 
 
 if __name__ == '__main__':
     setup()

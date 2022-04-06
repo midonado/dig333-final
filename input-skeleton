@@ -14,6 +14,7 @@ num = {'0': (0, 0, 0, 0, 0, 0, 1),
        '8': (0, 0, 0, 0, 0, 0, 0),
        '9': (0, 0, 0, 0, 1, 0, 0)}
 
+
 def setup():
     for segment in segments:
         GPIO.setup(segment, GPIO.OUT)
@@ -26,18 +27,22 @@ if __name__ == '__main__':
 
     try:
         while True:
-            # read input from user
+            # Read input from user into inputString
             inputString = 0
 
-            if(inputString == "q"): break
+            # Add if-statement that breaks the loop
+            # when user inputs "q"
 
-            for ch in inputString:
-                if(ch >= "0" and ch <= "9"):
-                    for loop in range(7):   
-                        GPIO.output(segments[loop], num[ch][loop])
-                    time.sleep(0.5)
+            # Use for-loop to iterate over inputString
+            # If the character is a digit between 0 and 9,
+            # use loop below to display the character
 
-            for loop in range(7):   
-                GPIO.output(segments[loop], 1)
+                # for loop in range(7):
+                #     GPIO.output(segments[loop], num[ch][loop])
+                # time.sleep(0.5)
+
+            # OPTIONAL: after your display is done, set
+            # all output segments to '1' to clear the 
+            # display
     finally:
         GPIO.cleanup()
