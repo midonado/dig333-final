@@ -76,10 +76,10 @@ def getTimeDiff():
 
 if __name__ == '__main__':
     setup()
+    timeDiff = getTimeDiff()
+    # timeDiff += "ti15"
+    print(timeDiff)
     try:
-        timeDiff = getTimeDiff()
-        # timeDiff += "ti15"
-        print(timeDiff)
         while True:
             for digit in range(4):
                 for loop in range(0, 7):
@@ -87,7 +87,5 @@ if __name__ == '__main__':
                 GPIO.output(digits[digit], 0)
                 time.sleep(0.001)
                 GPIO.output(digits[digit], 1)
-
-            if(input() == "q"): break
     finally:
         GPIO.cleanup()
