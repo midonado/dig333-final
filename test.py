@@ -83,10 +83,10 @@ if __name__ == '__main__':
         while True:
             for ch in timeDiff:
                 for digit in digits:
-                    GPIO.outpit(digit, 0)
+                    GPIO.output(digit, 0)
                     for loop in range(0, 7):
                         GPIO.output(segments[loop], not num[ch][loop])
-                    GPIO.outpit(digit, 1)
+                    GPIO.output(digit, 1)
 
             if(input() == "q"): break
     finally:
