@@ -40,7 +40,7 @@ def setup():
 
     for digit in digits:
         GPIO.setup(digit, GPIO.OUT)
-        GPIO.output(digit, 0)
+        GPIO.output(digit, 1)
 
 
 def getTime():  # returns current time as datetime with hours + mins
