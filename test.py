@@ -124,7 +124,7 @@ if __name__ == '__main__':
         print("Press any key to exit.")
         while True:
             n = input("Press 'a' to see how long until 5: ")
-            if(n == " "):
+            if(n == "a"):
                 display()
             else: break
 
