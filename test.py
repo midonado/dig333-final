@@ -13,6 +13,8 @@ FIVE_PM = datetime.timedelta(
 
 segments = (16, 17, 22, 26, 21, 13, 27)
 digits = (11, 9, 10, 25)
+
+
 num = {' ': (1, 1, 1, 1, 1, 1, 1),
        '0': (0, 0, 0, 0, 0, 0, 1),
        '1': (1, 0, 0, 1, 1, 1, 1),
@@ -43,8 +45,8 @@ def setup():
     for digit in digits:
         GPIO.setup(digit, GPIO.OUT)
         GPIO.output(digit, 1)
-    
 
+    # Set up Minute
     GPIO.setup(2, GPIO.OUT)
     GPIO.output(2, 0)
     GPIO.setup(3, GPIO.OUT)
@@ -79,6 +81,39 @@ def getTimeDiff():
     time = getTime()
     return timeDiff(time)
 
+
+def display():
+    timeDiff = getTimeDiff()
+    til5 = "ti15"
+    flag = True
+
+    GPIO.output(3, 0)
+
+       # Display Time
+    for i in range(400):
+        if(i % 50 == 0):
+            GPIO.output(2, flag)
+            flag = not flag
+
+        for digit in range(4):
+
+            for loop in range(0, 7):
+                GPIO.output(segments[loop], not num[timeDiff[digit]][loop])
+            GPIO.output(digits[digit % 4], 0)
+            time.sleep(0.001)
+            GPIO.output(digits[digit % 4], 1)
+
+    GPIO.output(3, 1)
+
+    # Display "til 5"
+    for i in range(200):
+        for digit in range(4):
+            for loop in range(0, 7):
+                GPIO.output(segments[loop], not num[til5[digit]][loop])
+            GPIO.output(digits[digit % 4], 0)
+            time.sleep(0.001)
+            GPIO.output(digits[digit % 4], 1)
+
 # TODO: process string into GPIO output
 
 
@@ -86,34 +121,7 @@ if __name__ == '__main__':
     # print(timeDiff)
     try:
         setup()
-        timeDiff = getTimeDiff()
-        til5 = "ti15"
-        flag = True
-
-        GPIO.output(3, 0)
-
-        for i in range(400):
-            if(i%50 == 0): 
-                GPIO.output(2, flag)
-                flag = not flag
-
-            for digit in range(4):
-
-                for loop in range(0, 7):
-                    GPIO.output(segments[loop], not num[timeDiff[digit]][loop])
-                GPIO.output(digits[digit%4], 0)
-                time.sleep(0.001)
-                GPIO.output(digits[digit%4], 1)
-
-        GPIO.output(3, 1)
-
-        for i in range(200):
-            for digit in range(4):
-                for loop in range(0, 7):
-                    GPIO.output(segments[loop], not num[til5[digit]][loop])
-                GPIO.output(digits[digit%4], 0)
-                time.sleep(0.001)
-                GPIO.output(digits[digit%4], 1)
+        display()
 
     finally:
         GPIO.cleanup()
