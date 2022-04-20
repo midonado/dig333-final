@@ -11,8 +11,10 @@ FIVE_PM = datetime.timedelta(
     minutes=0
 )
 
-segments = (16, 17, 22, 26, 21, 13, 27)
-digits = (11, 9, 10, 25)
+segments = (13, 9, 7, 12, 16, 6, 8)
+digits = (19, 5, 11, 25)
+minutes = (10, 24)
+inputPort = 4
 
 
 num = {' ': (1, 1, 1, 1, 1, 1, 1),
@@ -31,8 +33,19 @@ num = {' ': (1, 1, 1, 1, 1, 1, 1),
        't': (1, 1, 1, 0, 0, 0, 0),
        'i': (1, 1, 0, 1, 1, 1, 1)}
 
-# 30j -> 16; 31j -> 13; 56j -> 17
-# 31e -> (21)22; 32e -> 26; 55e -> (22)11; 56e -> (27)24
+# Segments:
+# 41j -> 31j -> 13; 42j -> 32j -> 6; 45j -> 55j -> 9
+# 40a -> 30e -> 16; 41a -> 31e -> 12; 43a -> 55e -> 7; 44a -> 56e -> 8
+
+# Digits:
+# 40j ->19, 43j -> 5, 44j -> 11
+# 45a -> 25
+
+# Minute Pointer:
+# 46j -> 56j -> 10, 46a -> 24
+
+# Input:
+# 05, GND
 
 # TODO: cleanup comments/documentation
 
@@ -47,12 +60,12 @@ def setup():
         GPIO.output(digit, 1)
 
     # Set up Minute
-    GPIO.setup(2, GPIO.OUT)
-    GPIO.output(2, 0)
-    GPIO.setup(3, GPIO.OUT)
-    GPIO.output(3, 1)
+    GPIO.setup(minutes[0], GPIO.OUT)
+    GPIO.output(minutes[0], 0)
+    GPIO.setup(minutes[1], GPIO.OUT)
+    GPIO.output(minutes[1], 1)
 
-    GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(inputPort, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 def getTime():  # returns current time as datetime with hours + mins
@@ -89,12 +102,12 @@ def display():
     til5 = "ti15"
     flag = True
 
-    GPIO.output(3, 0)
+    GPIO.output(minutes[1], 0)
 
        # Display Time
     for i in range(400):
         if(i % 50 == 0):
-            GPIO.output(2, flag)
+            GPIO.output(minutes[0], flag)
             flag = not flag
 
         for digit in range(4):
@@ -105,7 +118,7 @@ def display():
             time.sleep(0.001)
             GPIO.output(digits[digit % 4], 1)
 
-    GPIO.output(3, 1)
+    GPIO.output(minutes[1], 1)
 
     # Display "til 5"
     for i in range(200):
@@ -124,7 +137,7 @@ if __name__ == '__main__':
     try:
         setup()
         while True:
-            input_state = GPIO.input(5)
+            input_state = GPIO.input(inputPort)
             if input_state == False:
                 display()
 
