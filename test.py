@@ -11,9 +11,9 @@ FIVE_PM = datetime.timedelta(
     minutes=0
 )
 
-segments = (13, 9, 7, 12, 16, 6, 8)
-digits = (19, 5, 11, 25)
-minutes = (10, 24)
+segments = (11, 19, 7, 8, 25, 5, 12)
+digits = (9, 6, 11, 16)
+minutes = (26, 20)
 inputPort = 4
 
 
@@ -33,19 +33,21 @@ num = {' ': (1, 1, 1, 1, 1, 1, 1),
        't': (1, 1, 1, 0, 0, 0, 0),
        'i': (1, 1, 0, 1, 1, 1, 1)}
 
+# FLIP THE SEGMENTS
+
 # Segments:
-# 41j -> 31j -> 13; 42j -> 32j -> 6; 45j -> 55j -> 9
-# 40a -> 30e -> 16; 41a -> 31e -> 12; 43a -> 55e -> 7; 44a -> 56e -> 8
+# 41j -> 31j -> 11; 42j -> 32j -> 5; 45j -> 55j -> 19
+# 40a -> 30e -> 25; 41a -> 31e -> 8; 43a -> 55e -> 7; 44a -> 56e -> 12
 
 # Digits:
-# 40j ->19, 43j -> 5, 44j -> 11
-# 45a -> 25
+# 40j -> 9, 43j -> 6, 44j -> 13
+# 45a -> 16
 
 # Minute Pointer:
-# 46j -> 56j -> 10, 46a -> 24
+# 46j -> 56j -> 26, 46a -> 20
 
 # Input:
-# 05, GND
+# 04, GND
 
 # TODO: cleanup comments/documentation
 
