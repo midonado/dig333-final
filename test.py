@@ -12,7 +12,7 @@ FIVE_PM = datetime.timedelta(
 )
 
 segments = (11, 19, 7, 8, 25, 5, 12)
-digits = (9, 6, 11, 16)
+digits = (9, 6, 13, 16)
 minutes = (26, 20)
 inputPort = 4
 
