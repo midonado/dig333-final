@@ -172,7 +172,7 @@ def display():
     # Display "til 5"
     for i in range(250):
         for digit in range(4):
-            displayDigit("til5", digit)
+            displayDigit("ti15", digit)
             # for loop in range(0, 7):
             #     GPIO.output(SEGMENTS[loop], not NUM[til5[digit]][loop])
             # GPIO.output(DIGITS[digit % 4], 0)
