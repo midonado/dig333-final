@@ -40,23 +40,6 @@ NUM = {' ': (1, 1, 1, 1, 1, 1, 1),
        't': (1, 1, 1, 0, 0, 0, 0),
        'i': (1, 1, 0, 1, 1, 1, 1)}
 
-# SEGMENTS:
-# 41j -> 31j -> 11; 42j -> 32j -> 5; 45j -> 55j -> 19
-# 40a -> 30e -> 25; 41a -> 31e -> 8; 43a -> 55e -> 7; 44a -> 56e -> 12
-
-# DIGITS:
-# 40j -> 9, 43j -> 6, 44j -> 13
-# 45a -> 16
-
-# MINUTES:
-# 46j -> 56j -> 26, 46a -> 20
-
-# INPUT:
-# 10, GND
-
-# TODO: cleanup comments/documentation
-
-
 def setup():
     """
     A function that sets up all relevant pins to the 
@@ -135,12 +118,22 @@ def getTimeDiff():
     time = getTime()
     return timeDiff(time)
 
-def displayDigit(str, digit):
+
+def displayDigit(str, index):
+    """
+    Iterates over the 7 segments of a digit, passing 
+    the appropriate value to each segment
+
+    Parameters:
+        str - String being iterated over
+        index - Index of digit being displayed
+    """
     for loop in range(0, 7):
-        GPIO.output(SEGMENTS[loop], not NUM[str[digit]][loop])
-    GPIO.output(DIGITS[digit % 4], 0)
+        GPIO.output(SEGMENTS[loop], not NUM[str[index]][loop])
+    GPIO.output(DIGITS[index % 4], 0)
     time.sleep(0.001)
-    GPIO.output(DIGITS[digit % 4], 1)
+    GPIO.output(DIGITS[index % 4], 1)
+
 
 def display():
     """
@@ -148,40 +141,29 @@ def display():
     through the display segments to display the intended value
     """
     timeDiff = getTimeDiff()
-    # til5 = "ti15"
-    flag = True
+    flag = True # Minute indicator (:) status
 
-    GPIO.output(MINUTES[1], 0)
+    GPIO.output(MINUTES[1], 0) # ground Minute indicator (:)
 
     # Display timeDiff
     for i in range(500):
+        # Blink Minute indicator (:) every 10 iterations (~4ms)
         if(i % 50 == 0):
             GPIO.output(MINUTES[0], flag)
             flag = not flag
 
         for digit in range(4):
             displayDigit(timeDiff, digit)
-            # for loop in range(0, 7):
-            #     GPIO.output(SEGMENTS[loop], not NUM[timeDiff[digit]][loop])
-            # GPIO.output(DIGITS[digit % 4], 0)
-            # time.sleep(0.001)
-            # GPIO.output(DIGITS[digit % 4], 1)
 
-    GPIO.output(MINUTES[1], 1)
+    GPIO.output(MINUTES[1], 1) # deactivate Minute indicator (:)
 
     # Display "til 5"
     for i in range(250):
         for digit in range(4):
             displayDigit("ti15", digit)
-            # for loop in range(0, 7):
-            #     GPIO.output(SEGMENTS[loop], not NUM[til5[digit]][loop])
-            # GPIO.output(DIGITS[digit % 4], 0)
-            # time.sleep(0.001)
-            # GPIO.output(DIGITS[digit % 4], 1)
 
 
 if __name__ == '__main__':
-    # print(timeDiff)
     try:
         setup()
         while True:
