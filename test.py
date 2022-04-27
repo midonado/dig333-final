@@ -5,18 +5,19 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 
-# 5 PM Constant
+# 5 PM Time Constant
 FIVE_PM = datetime.timedelta(
     hours=17,
     minutes=0
 )
 
+# GPIO Pins
 segments = (11, 19, 7, 8, 25, 5, 12)
 digits = (9, 6, 13, 16)
 minutes = (26, 20)
 inputPort = 4
 
-
+# Number Segment Sequences
 num = {' ': (1, 1, 1, 1, 1, 1, 1),
        '0': (0, 0, 0, 0, 0, 0, 1),
        '1': (1, 0, 0, 1, 1, 1, 1),
@@ -32,9 +33,7 @@ num = {' ': (1, 1, 1, 1, 1, 1, 1),
        'n': (1, 1, 0, 1, 0, 1, 0),
        't': (1, 1, 1, 0, 0, 0, 0),
        'i': (1, 1, 0, 1, 1, 1, 1)}
-
-# FLIP THE SEGMENTS
-
+       
 # Segments:
 # 41j -> 31j -> 11; 42j -> 32j -> 5; 45j -> 55j -> 19
 # 40a -> 30e -> 25; 41a -> 31e -> 8; 43a -> 55e -> 7; 44a -> 56e -> 12
@@ -106,7 +105,7 @@ def display():
 
     GPIO.output(minutes[1], 0)
 
-       # Display Time
+    # Display Time
     for i in range(400):
         if(i % 50 == 0):
             GPIO.output(minutes[0], flag)
@@ -130,8 +129,6 @@ def display():
             GPIO.output(digits[digit % 4], 0)
             time.sleep(0.001)
             GPIO.output(digits[digit % 4], 1)
-
-# TODO: process string into GPIO output
 
 
 if __name__ == '__main__':
