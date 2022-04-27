@@ -1,3 +1,8 @@
+"""
+'How Long Until 5' RPi Program
+
+Author: Miguel Donado
+"""
 import datetime
 import time
 import sys
@@ -5,7 +10,8 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 
-# 5 PM Time Constant
+# Global Constants
+# 5PM
 FIVE_PM = datetime.timedelta(
     hours=17,
     minutes=0
@@ -15,10 +21,10 @@ FIVE_PM = datetime.timedelta(
 SEGMENTS = (11, 19, 7, 8, 25, 5, 12)
 DIGITS = (9, 6, 13, 16)
 MINUTES = (26, 20)
-inputPort = 10
+INPUT_PORT = 10
 
 # Number Segment Sequences
-num = {' ': (1, 1, 1, 1, 1, 1, 1),
+NUM = {' ': (1, 1, 1, 1, 1, 1, 1),
        '0': (0, 0, 0, 0, 0, 0, 1),
        '1': (1, 0, 0, 1, 1, 1, 1),
        '2': (0, 0, 1, 0, 0, 1, 0),
@@ -42,20 +48,26 @@ num = {' ': (1, 1, 1, 1, 1, 1, 1),
 # 40j -> 9, 43j -> 6, 44j -> 13
 # 45a -> 16
 
-# Minute Pointer:
+# MINUTES:
 # 46j -> 56j -> 26, 46a -> 20
 
-# Input:
+# INPUT:
 # 10, GND
 
 # TODO: cleanup comments/documentation
 
 
 def setup():
+    """
+    A function that sets up all relevant pins to the 
+    program as either input or output and gives them 
+    an initial 'OFF' value. The actual value of 'OFF' 
+    varies across pins and display types
+    """
+    # Set up Segment and Digit Pins
     for segment in SEGMENTS:
         GPIO.setup(segment, GPIO.OUT)
         GPIO.output(segment, 0)
-
     for digit in DIGITS:
         GPIO.setup(digit, GPIO.OUT)
         GPIO.output(digit, 1)
@@ -66,7 +78,8 @@ def setup():
     GPIO.setup(MINUTES[1], GPIO.OUT)
     GPIO.output(MINUTES[1], 1)
 
-    GPIO.setup(inputPort, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    # Set up Input Port
+    GPIO.setup(INPUT_PORT, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 def getTime():  # returns current time as datetime with hours + mins
@@ -79,12 +92,30 @@ def getTime():  # returns current time as datetime with hours + mins
     return currentDatetime
 
 
-def stringTime(hours, mins):  # stringifies time
+def stringTime(hours, mins):
+    """
+    A program that stringifies time into the display format
+
+    Parameters:
+        hours, mins - Integers representing hours and minutes
+    Returns:
+        A string of the time in the format HHMM, where gaps
+        are filled with '0's.
+    """
     return str(hours).rjust(2, "0") + \
         str(mins).rjust(2, "0")
 
 
-def timeDiff(time):  # return time difference between time and 5PM, returns as a string
+def timeDiff(time):
+    """
+    Returns the difference between 5PM and the input time
+
+    Parameters:
+        time - Current time in datetime format
+    Returns:
+        The stringified difference between 5PM and the 
+        input time
+    """
     delta = FIVE_PM - time
 
     delta_hours = delta.seconds//3600
@@ -94,41 +125,59 @@ def timeDiff(time):  # return time difference between time and 5PM, returns as a
 
 
 def getTimeDiff():
+    """
+    Accessor function to difference between current time and 5 PM
+
+    Returns:
+        The stringified difference between 5PM and the 
+        input time
+    """
     time = getTime()
     return timeDiff(time)
 
+def displayDigit(str, digit):
+    for loop in range(0, 7):
+        GPIO.output(SEGMENTS[loop], not NUM[str[digit]][loop])
+    GPIO.output(DIGITS[digit % 4], 0)
+    time.sleep(0.001)
+    GPIO.output(DIGITS[digit % 4], 1)
 
 def display():
+    """
+    Calculates and formats the appropriate value and cycles 
+    through the display segments to display the intended value
+    """
     timeDiff = getTimeDiff()
-    til5 = "ti15"
+    # til5 = "ti15"
     flag = True
 
     GPIO.output(MINUTES[1], 0)
 
-    # Display Time
-    for i in range(400):
+    # Display timeDiff
+    for i in range(500):
         if(i % 50 == 0):
             GPIO.output(MINUTES[0], flag)
             flag = not flag
 
         for digit in range(4):
-
-            for loop in range(0, 7):
-                GPIO.output(SEGMENTS[loop], not num[timeDiff[digit]][loop])
-            GPIO.output(DIGITS[digit % 4], 0)
-            time.sleep(0.001)
-            GPIO.output(DIGITS[digit % 4], 1)
+            displayDigit(timeDiff, digit)
+            # for loop in range(0, 7):
+            #     GPIO.output(SEGMENTS[loop], not NUM[timeDiff[digit]][loop])
+            # GPIO.output(DIGITS[digit % 4], 0)
+            # time.sleep(0.001)
+            # GPIO.output(DIGITS[digit % 4], 1)
 
     GPIO.output(MINUTES[1], 1)
 
     # Display "til 5"
-    for i in range(200):
+    for i in range(250):
         for digit in range(4):
-            for loop in range(0, 7):
-                GPIO.output(SEGMENTS[loop], not num[til5[digit]][loop])
-            GPIO.output(DIGITS[digit % 4], 0)
-            time.sleep(0.001)
-            GPIO.output(DIGITS[digit % 4], 1)
+            displayDigit("til5", digit)
+            # for loop in range(0, 7):
+            #     GPIO.output(SEGMENTS[loop], not NUM[til5[digit]][loop])
+            # GPIO.output(DIGITS[digit % 4], 0)
+            # time.sleep(0.001)
+            # GPIO.output(DIGITS[digit % 4], 1)
 
 
 if __name__ == '__main__':
@@ -136,7 +185,7 @@ if __name__ == '__main__':
     try:
         setup()
         while True:
-            input_state = GPIO.input(inputPort)
+            input_state = GPIO.input(INPUT_PORT)
             if input_state == False:
                 display()
 
