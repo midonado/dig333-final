@@ -21,7 +21,7 @@ FIVE_PM = datetime.timedelta(
 SEGMENTS = (11, 19, 7, 8, 25, 5, 12)
 DIGITS = (9, 6, 13, 16)
 MINUTES = (26, 20)
-INPUT_PORT = 10
+INPUT_PORT = 4
 
 # Number Segment Sequences
 NUM = {' ': (1, 1, 1, 1, 1, 1, 1),
