@@ -28,4 +28,16 @@ My third milestone was to translate my breadboard circuit into a permanent, sold
 
 ### Milestone 4
 
-In the final two weeks, I focused on the physical form of my 'thing'. I looked into 
+In the final two weeks, I picked up from my efforts in the previous milestone and finished the final version of my circuit, replicating the diagram. I also soldered the definitive version of my input switch. Additionally I used the display's packaging foam as a stabilizer to keep everything in place.
+
+![Circuit & Input Switch]()
+
+I focused on the physical form of my 'thing'. I looked into other gadgets with a similar form, that is, a simple display operated by one or few buttons.
+
+#### Moodboard:
+
+![Moodboard](img/moodboard.png)
+
+Finally, I moved into building my actual 'thing' by repurposing a cardboard box to fit my project.
+
+![Cardboard Box]()
