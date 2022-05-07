@@ -26,11 +26,12 @@ My third milestone was to translate my breadboard circuit into a permanent, sold
 ![Circuit Tools](img/circuit-tools.jpg)
 ![Circuit Diagram](img/circuit-diagram.png)
 
+
 ### Milestone 4
 
 In the final two weeks, I picked up from my efforts in the previous milestone and finished the final version of my circuit, replicating the diagram. I also soldered the definitive version of my input switch. Additionally I used the display's packaging foam as a stabilizer to keep everything in place.
 
-![Circuit & Input Switch]()
+![Circuit](img/circuit.jpg)
 
 I focused on the physical form of my 'thing'. I looked into other gadgets with a similar form, that is, a simple display operated by one or few buttons.
 
@@ -40,4 +41,8 @@ I focused on the physical form of my 'thing'. I looked into other gadgets with a
 
 Finally, I moved into building my actual 'thing' by repurposing a cardboard box to fit my project.
 
-![Cardboard Box]()
+![Cardboard Box](img/cardboard-box.jpg)
+![Inside](img/inside.jpg)
+![Final 'Thing'](img/final.jpg)
+
+Finally, here is a video of the final 'thing', functioning:
