@@ -2,7 +2,18 @@
 
 ## Artist's Statement
 
-[WIP]
+Simply put, How Long Until 5 (HLU5 from now on) is a device displaying how much time is left until 5 PM at the press of a button. If it is 5 PM or after, the device automatically “shifts” to 5 PM of the next day; that is, the counter never reaches 00:00.
+
+The device exists in the increasing space of technology automating mundane and repetitive tasks such as sorting files, auto-correcting words, or, in this case, checking the time and calculating how much of the workday is left. Although these tasks are often inconvenient, I believe that they are an integral part of life. After all, what would life be without inconvenience? Or, better yet, what would be _enjoyable_ about life if all its non-enjoyable inconveniences were gone? In this context, I think of HLU5 as a critique of (or at least, an attempt of poking fun at) the over-automation of life through technology.
+
+The technology that over-automates mundane tasks exists to make life more efficient. The automation of these tasks is so prevalent due to a culture that glorifies grind, hustle, and efficiency. That is, this technology exthat workers ists so can work more (instead of spending time on mundane, repetitive tasks). As such, although HLU5 could display any time, any countdown, or, for that matter, any sequence of characters that could be represented in 7-segments, I intentionally chose to make this device a timer until 5 PM. Understanding 5 PM as the end of the workday, I consider that it becomes its most important moment as a break from the current system of overworking oneself. The ‘loop’ of finding the time until the next 5 PM, without having any special events at 5 PM itself, suggests the cyclical or monotone nature of the workday and the culture that creates it. In this context, I think of HLU5 as not only a critique of over-automation but also a critique of the work culture that drives it.
+
+I believe HLU5 is both useful and useless. It is first useful because, as established previously, 5 PM is an essential part of the workday for the workers. As such, to provide people with _how long until 5_ is practically useful or beneficial, as the information is somewhat valuable. On the contrary, I believe it is useless as the information provided is easily accessible without the need for this device. Though it shortens the steps of looking at a clock and calculating the difference, this shortcut is ultimately superfluous.
+
+With this in mind, it would be rather ironic to conceive HLU5 as a commercially available piece of tech, to be produced in a 9-to-5 (or longer) shifts at a factory and over-automating life through technology. As such, I think of HLU5 as a sculptural or installation artwork that emphasizes its critique of the current state of technology and its relationship to the culture of grind and constant work than as a gadget sold to consumers. I believe that its status as art contributes to its existence between usefulness and uselessness, by providing value through its critique but being practically useless.  
+
+In future versions, I would hope to build on this concept by improving its aesthetics and stability. Although the rough, DIY look of the cardboard box is interesting, I believe that a clearer, more polished case might provide an appearance closer to the products I intend to criticize, and as such make HLU5 a stronger or more provocative critical sculpture. I also believe this would be more in line with my artistic practice, which often exaggerates and accentuates relevant factors beyond ‘realism.’
+
 
 ## Progress & Documentation
 
