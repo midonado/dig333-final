@@ -104,6 +104,9 @@ def timeDiff(time):
     delta_hours = delta.seconds//3600
     delta_minutes = (delta.seconds % 3600)//60
 
+    if delta_hours == 0 and delta_minutes == 0:
+        delta_hours = 24
+
     return stringTime(delta_hours, delta_minutes)
 
 
