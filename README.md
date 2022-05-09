@@ -2,7 +2,7 @@
 
 ## Artist's Statement
 
-sdcs
+[WIP]
 
 ## Progress & Documentation
 
